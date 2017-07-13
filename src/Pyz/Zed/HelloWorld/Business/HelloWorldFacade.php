@@ -4,6 +4,7 @@ namespace Pyz\Zed\HelloWorld\Business;
 
 use Generated\Shared\Transfer\HelloWorldTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
+use Orm\Zed\HelloWorld\Persistence\PeopleISaidHelloTo;
 
 /**
  * @method \Pyz\Zed\HelloWorld\Business\HelloWorldBusinessFactory getFactory()
@@ -29,7 +30,12 @@ class HelloWorldFacade extends AbstractFacade implements HelloWorldFacadeInterfa
      */
     public function getEveryoneGreeted() : array
     {
-        $peopleGreeted = $this->getFactory()->getPeopleGreeted();
-        return array_column($peopleGreeted, 'HelloWorld');
+        $peopleGreeted = $this->getFactory()->getPeopleGreeted()->getArrayCopy();
+
+        $getPersonsName = function (PeopleISaidHelloTo $person) : string {
+            return $person->getHelloWorld();
+        };
+
+        return array_map($getPersonsName, $peopleGreeted);
     }
 }

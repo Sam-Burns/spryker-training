@@ -22,8 +22,8 @@ class HelloWorldBusinessFactory extends AbstractBusinessFactory
         $this->getQueryContainer()->querySaveGreeting($name);
     }
 
-    public function getPeopleGreeted()
+    public function getPeopleGreeted() : ObjectCollection
     {
-        return $this->getQueryContainer()->getAll()->find()->toArray();
+        return $this->getQueryContainer()->getAll()->find();
     }
 }
