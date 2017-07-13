@@ -137,3 +137,5 @@ $config[EventConstants::LOGGER_ACTIVE] = true;
 
 // ---------- Event journal (deprecated)
 $config[EventJournalConstants::LOCK_OPTIONS][EventJournalConstants::NO_LOCK] = true;
+
+$config[TwigConstants::YVES_PATH_CACHE_ENABLED] = false;

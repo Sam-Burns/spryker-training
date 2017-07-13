@@ -82,6 +82,21 @@ class CheckoutController extends AbstractController
      *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
+    public function smashedUpAction(Request $request)
+    {
+        return $this->createStepProcess()->process(
+            $request,
+            $this->getFactory()
+                ->createCheckoutFormFactory()
+                ->createSmashedUpFormCollection()
+        );
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function paymentAction(Request $request)
     {
         return $this->createStepProcess()->process(

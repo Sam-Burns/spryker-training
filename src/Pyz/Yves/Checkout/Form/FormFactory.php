@@ -10,6 +10,7 @@ namespace Pyz\Yves\Checkout\Form;
 use Pyz\Yves\Checkout\CheckoutDependencyProvider;
 use Pyz\Yves\Checkout\Form\DataProvider\SubFormDataProviders;
 use Pyz\Yves\Checkout\Form\Steps\PaymentForm;
+use Pyz\Yves\Checkout\Form\Steps\SmashedUpForm;
 use Pyz\Yves\Checkout\Form\Steps\SummaryForm;
 use Pyz\Yves\Customer\Form\CheckoutAddressCollectionForm;
 use Pyz\Yves\Customer\Form\CustomerCheckoutForm;
@@ -82,6 +83,16 @@ class FormFactory extends SprykerFormFactory
         $subFormDataProvider = $this->createSubFormDataProvider($createPaymentSubForms);
 
         return $this->createSubFormCollection($paymentFormType, $subFormDataProvider);
+    }
+
+    public function createSmashedUpFormCollection()
+    {
+        return $this->createFormCollection([$this->createSmashedUpForm()]);
+    }
+
+    public function createSmashedUpForm() : FormTypeInterface
+    {
+        return new SmashedUpForm();
     }
 
     /**

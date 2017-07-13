@@ -14,6 +14,7 @@ use Pyz\Yves\Checkout\Process\Steps\AddressStep;
 use Pyz\Yves\Checkout\Process\Steps\CustomerStep;
 use Pyz\Yves\Checkout\Process\Steps\EntryStep;
 use Pyz\Yves\Checkout\Process\Steps\PaymentStep;
+use Pyz\Yves\Checkout\Process\Steps\SmashedUpStep;
 use Pyz\Yves\Checkout\Process\Steps\PlaceOrderStep;
 use Pyz\Yves\Checkout\Process\Steps\ShipmentStep;
 use Pyz\Yves\Checkout\Process\Steps\SuccessStep;
@@ -55,6 +56,7 @@ class StepFactory extends SprykerStepFactory
             ->addStep($this->createAddressStep())
             ->addStep($this->createShipmentStep())
             ->addStep($this->createPaymentStep())
+            ->addStep($this->createSmashedUpStep())
             ->addStep($this->createSummaryStep())
             ->addStep($this->createPlaceOrderStep())
             ->addStep($this->createSuccessStep());
@@ -136,6 +138,19 @@ class StepFactory extends SprykerStepFactory
         return new PaymentStep(
             $this->createPaymentMethodHandler(),
             CheckoutControllerProvider::CHECKOUT_PAYMENT,
+            ApplicationControllerProvider::ROUTE_HOME,
+            $this->getFlashMessenger()
+        );
+    }
+
+    /**
+     * @return \Pyz\Yves\Checkout\Process\Steps\SmashedUpStep
+     */
+    protected function createSmashedUpStep()
+    {
+        return new SmashedUpStep(
+            $this->createPaymentMethodHandler(),
+            CheckoutControllerProvider::CHECKOUT_SMASHED_UP,
             ApplicationControllerProvider::ROUTE_HOME,
             $this->getFlashMessenger()
         );
