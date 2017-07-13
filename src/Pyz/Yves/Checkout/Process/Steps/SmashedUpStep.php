@@ -1,7 +1,6 @@
 <?php
 namespace Pyz\Yves\Checkout\Process\Steps;
 
-use Pyz\Yves\Checkout\Form\Steps\SmashedUpForm;
 use Spryker\Shared\Kernel\Transfer\AbstractTransfer;
 use Spryker\Yves\StepEngine\Dependency\Plugin\Handler\StepHandlerPluginCollection;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,8 +44,7 @@ class SmashedUpStep extends AbstractBaseStep
      */
     public function execute(Request $request, AbstractTransfer $quoteTransfer)
     {
-        $formInputId = SmashedUpForm::SMASHED_UP;
-        $userInput = $request->attributes->get($formInputId);
+        $userInput = (bool) $request->request->get('smashedUpForm')['smashed_up'];
         $quoteTransfer->setSmashedUp($userInput);
         return $quoteTransfer;
     }
