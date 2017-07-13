@@ -26,6 +26,7 @@ use Pyz\Yves\Customer\Plugin\Provider\CustomerSecurityServiceProvider;
 use Pyz\Yves\EventJournal\Plugin\Provider\EventJournalServiceProvider;
 use Pyz\Yves\Glossary\Plugin\Provider\TranslationServiceProvider;
 use Pyz\Yves\Heartbeat\Plugin\Provider\HeartbeatControllerProvider;
+use Pyz\Yves\HelloWorld\Plugin\Provider\HelloWorldControllerProvider;
 use Pyz\Yves\Newsletter\Plugin\Provider\NewsletterControllerProvider;
 use Pyz\Yves\ProductSet\Plugin\Provider\ProductSetControllerProvider;
 use Pyz\Yves\Twig\Plugin\Provider\TwigServiceProvider;
@@ -168,6 +169,7 @@ class YvesBootstrap
             new CatalogControllerProvider($isSsl),
             new CalculationControllerProvider($isSsl),
             new ProductSetControllerProvider($isSsl),
+            new HelloWorldControllerProvider($isSsl),
         ];
     }
 
