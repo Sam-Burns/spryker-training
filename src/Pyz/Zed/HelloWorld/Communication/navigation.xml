@@ -7,4 +7,11 @@
         <controller>index</controller>
         <action>index</action>
     </hello-world>
+    <greeting-list>
+        <label>Greeting list</label>
+        <title>Greeting list</title>
+        <bundle>hello-world</bundle>
+        <controller>index</controller>
+        <action>list</action>
+    </greeting-list>
 </config>

@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\HelloWorld\Communication\Controller;
 
+use Generated\Shared\Transfer\HelloWorldTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 
 /**
@@ -11,7 +12,6 @@ use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
  */
 class IndexController extends AbstractController
 {
-
     /**
      * @return array
      */
@@ -22,4 +22,14 @@ class IndexController extends AbstractController
         ]);
     }
 
+    public function listAction()
+    {
+        $businessFacade = $this->getFacade();
+
+        $peopleGreeted = $businessFacade->getEveryoneGreeted();
+
+        return $this->viewResponse([
+            'list' => var_export($peopleGreeted, true)
+        ]);
+    }
 }
