@@ -2,6 +2,8 @@
 
 namespace Pyz\Zed\HelloWorld\Business;
 
+use Generated\Shared\Transfer\HelloWorldTransfer;
+use Propel\Runtime\Collection\ObjectCollection;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -10,7 +12,6 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
  */
 class HelloWorldBusinessFactory extends AbstractBusinessFactory
 {
-
     public function getGreetingAugmenter() : GreetingAugmenter
     {
         return $this->getProvidedDependency('greeting-augmenter');
@@ -21,4 +22,8 @@ class HelloWorldBusinessFactory extends AbstractBusinessFactory
         $this->getQueryContainer()->querySaveGreeting($name);
     }
 
+    public function getPeopleGreeted()
+    {
+        return $this->getQueryContainer()->getAll()->find()->toArray();
+    }
 }

@@ -29,11 +29,7 @@ class HelloWorldFacade extends AbstractFacade implements HelloWorldFacadeInterfa
      */
     public function getEveryoneGreeted() : array
     {
-        $peopleGreeted = [];
-        $getPersonsName = function (HelloWorldTransfer $helloWorldTransfer) {
-            return $helloWorldTransfer->getHelloWorld();
-        };
-
-        return array_map($getPersonsName, $peopleGreeted);
+        $peopleGreeted = $this->getFactory()->getPeopleGreeted();
+        return array_column($peopleGreeted, 'HelloWorld');
     }
 }
